@@ -3,7 +3,9 @@
  */
 package videojuegos;
 
-import utilidades.EntradaDatos;
+import static utilidades.EntradaDatos.pedirCadena;
+import static utilidades.EntradaDatos.pedirDouble;
+import static utilidades.EntradaDatos.pedirEntero;
 import utilidades.Fichero;
 
 /**
@@ -15,6 +17,7 @@ public class VideoJuegos {
     // Variable que contiene nuestra lista de juegos
     private static GameList misJuegos;
     private static Fichero miFichero;
+
     /**
      * @param args the command line arguments
      */
@@ -28,7 +31,82 @@ public class VideoJuegos {
             // inicializamos la lista como una lista vacía
             misJuegos = new GameList();
         }
+        // Menú CRUD
+        int opcion;
+        do {
+            mostrarMenu();
+            opcion = pedirEntero("Escoge una opción");
+            switch (opcion) {
+                case 1:
+                    newGame();
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 0:
+                    System.out.println("Hasta la próxima");
+                    break;
+                default:
+                    System.out.println("Opción incorrecta.");
+            }
+        } while (opcion != 0);
+
+    }
+
+    private static void newGame() {
+        String nombre;
+        do {
+            nombre = pedirCadena("Nombre:");
+            if (nombre.equals("")) {
+                System.out.println("No se puede dejar el nombre en blanco.");
+            }
+        } while (nombre.equals(""));
+        String genero;
+        do {
+            genero = pedirCadena("Género: ");
+            if (genero.equals("")) {
+                System.out.println("No se puede dejar el género en blanco.");
+            }
+        } while (genero.equals(""));
+        int puntos;
+        do {
+            puntos = pedirEntero("Valoración: ");
+            if (puntos < 0 || puntos > 10) {
+                System.out.println("Debe estar entre 0 y 10");
+            }
+        } while (puntos < 0 || puntos > 10);
+        double precio;
+        do {
+            precio = pedirDouble("Precio: ");
+            if (precio < 0) {
+                System.out.println("El precio no puede ser negativo");
+            } 
+        } while (precio < 0);
+        String respuesta;
+        boolean enPropiedad;
+        do {
+            respuesta = pedirCadena("¿Lo tienes (SI/NO)?");
+            if (respuesta.equalsIgnoreCase("si")) {
+                enPropiedad = true;
+            } else if (respuesta.equalsIgnoreCase("no")) {
+                enPropiedad = false;
+            } else {
+                System.out.println("Respuesta incorrecta. Escribe si o no");
+            }
+        } while (!respuesta.equalsIgnoreCase("SI") && !respuesta.equalsIgnoreCase("no"));
         
     }
-    
+
+    private static void mostrarMenu() {
+        System.out.println(" VIDEOJUEGOS ");
+        System.out.println("1. Alta");
+        System.out.println("2. Listado");
+        System.out.println("3. Modificar");
+        System.out.println("4. Borrar");
+        System.out.println("0. Salir");
+    }
+
 }
