@@ -46,6 +46,7 @@ public class VideoJuegos {
                 case 3:
                     break;
                 case 4:
+                    deleteGame();
                     break;
                 case 0:
                     System.out.println("Hasta la próxima");
@@ -56,6 +57,24 @@ public class VideoJuegos {
         } while (opcion != 0);
 
     }
+    
+    private static void deleteGame() {
+        // Mostramos los juegos para que el usuario los pueda ver
+        showGames();
+        String nombre = 
+                pedirCadenaNoVacia("Indica el nombre del juego que quieras borrar");
+        // Paso el nombre q me ha dado el usuario para buscar el juego en la lista
+        Game juego = misJuegos.obtenerGamePorNombre(nombre);
+        if (juego == null) {
+            System.out.println("No existe ningún juego con ese nombre.");
+        } else {
+            //TODO Preguntar antes confirmación de borrado
+            misJuegos.baja(juego);
+            // Grabamos en el fichero
+            miFichero.grabar(misJuegos);
+            System.out.println("Juego borrado.");
+        }
+    }
 
     private static void showGames() {
         System.out.println("Listado de videojuegos en el sistema");
@@ -65,20 +84,8 @@ public class VideoJuegos {
     }
     
     private static void newGame() {
-        String nombre;
-        do {
-            nombre = pedirCadena("Nombre:");
-            if (nombre.equals("")) {
-                System.out.println("No se puede dejar el nombre en blanco.");
-            }
-        } while (nombre.equals(""));
-        String genero;
-        do {
-            genero = pedirCadena("Género: ");
-            if (genero.equals("")) {
-                System.out.println("No se puede dejar el género en blanco.");
-            }
-        } while (genero.equals(""));
+        String nombre = pedirCadenaNoVacia("Nombre: ");
+        String genero = pedirCadenaNoVacia("Género: ");
         int puntos;
         do {
             puntos = pedirEntero("Valoración: ");
@@ -109,6 +116,17 @@ public class VideoJuegos {
         misJuegos.alta(g);
         miFichero.grabar(misJuegos);
         System.out.println("Juego dado de alta.");
+    }
+
+    private static String pedirCadenaNoVacia(String msg) {
+        String cadena;
+        do {
+            cadena = pedirCadena(msg);
+            if (cadena.equals("")) {
+                System.out.println("No se puede dejar en blanco.");
+            }
+        } while (cadena.equals(""));
+        return cadena;
     }
 
     private static void mostrarMenu() {
