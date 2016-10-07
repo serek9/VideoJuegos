@@ -71,4 +71,20 @@ public class Game implements Serializable {
         this.nombre = nombre;
     }
 
+    @Override
+    public String toString() {
+        String texto = "nombre=" + nombre + ", genero=" + genero 
+                + ", puntos=" + puntos + ", precio=" + precio;
+//        if (enPropiedad) {
+//            texto += " TENGUI";
+//        } else {
+//            texto += " FALTI";
+//        }
+        // Otro ejemplo
+//        int x = 0;
+//        x += (x%2==0)? 5: 6;
+        
+        texto += enPropiedad? " TENGUI" : " FALTI";
+        return texto;
+    }
 }

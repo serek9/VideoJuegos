@@ -41,6 +41,7 @@ public class VideoJuegos {
                     newGame();
                     break;
                 case 2:
+                    showGames();
                     break;
                 case 3:
                     break;
@@ -56,6 +57,13 @@ public class VideoJuegos {
 
     }
 
+    private static void showGames() {
+        System.out.println("Listado de videojuegos en el sistema");
+        for (Game g : misJuegos.getLista()) {
+            System.out.println(g);
+        }
+    }
+    
     private static void newGame() {
         String nombre;
         do {
