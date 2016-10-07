@@ -86,7 +86,7 @@ public class VideoJuegos {
             } 
         } while (precio < 0);
         String respuesta;
-        boolean enPropiedad;
+        boolean enPropiedad = false;
         do {
             respuesta = pedirCadena("¿Lo tienes (SI/NO)?");
             if (respuesta.equalsIgnoreCase("si")) {
@@ -97,7 +97,10 @@ public class VideoJuegos {
                 System.out.println("Respuesta incorrecta. Escribe si o no");
             }
         } while (!respuesta.equalsIgnoreCase("SI") && !respuesta.equalsIgnoreCase("no"));
-        
+        Game g = new Game(nombre, genero, puntos, precio, enPropiedad);
+        misJuegos.alta(g);
+        miFichero.grabar(misJuegos);
+        System.out.println("Juego dado de alta.");
     }
 
     private static void mostrarMenu() {

@@ -19,6 +19,10 @@ public class GameList implements Serializable {
         lista = new ArrayList<>();
     }
     
+    public void alta(Game g) {
+        lista.add(g);
+    }
+    
     public ArrayList<Game> getLista() {
         return lista;
     }
