@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="1.7.0_80" class="java.beans.XMLDecoder">
+<java version="1.8.0_60" class="java.beans.XMLDecoder">
  <object class="videojuegos.GameList" id="GameList0">
   <void property="lista">
    <void method="add">
@@ -18,6 +18,25 @@
      </void>
      <void property="puntos">
       <int>5</int>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="videojuegos.Game">
+     <void property="enPropiedad">
+      <boolean>true</boolean>
+     </void>
+     <void property="genero">
+      <string>Accion</string>
+     </void>
+     <void property="nombre">
+      <string>GTA</string>
+     </void>
+     <void property="precio">
+      <double>20.0</double>
+     </void>
+     <void property="puntos">
+      <int>8</int>
      </void>
     </object>
    </void>

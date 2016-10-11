@@ -3,10 +3,6 @@
  */
 package videojuegos;
 
-import static utilidades.EntradaDatos.pedirCadena;
-import static utilidades.EntradaDatos.pedirDouble;
-import static utilidades.EntradaDatos.pedirEntero;
-import utilidades.Fichero;
 
 /**
  *
@@ -35,7 +31,7 @@ public class VideoJuegos {
         int opcion;
         do {
             mostrarMenu();
-            opcion = pedirEntero("Escoge una opción");
+            opcion = EntradaDatos.pedirEntero("Escoge una opción");
             switch (opcion) {
                 case 1:
                     newGame();
@@ -88,14 +84,14 @@ public class VideoJuegos {
         String genero = pedirCadenaNoVacia("Género: ");
         int puntos;
         do {
-            puntos = pedirEntero("Valoración: ");
+            puntos = EntradaDatos.pedirEntero("Valoración: ");
             if (puntos < 0 || puntos > 10) {
                 System.out.println("Debe estar entre 0 y 10");
             }
         } while (puntos < 0 || puntos > 10);
         double precio;
         do {
-            precio = pedirDouble("Precio: ");
+            precio = EntradaDatos.pedirDouble("Precio: ");
             if (precio < 0) {
                 System.out.println("El precio no puede ser negativo");
             } 
@@ -103,7 +99,7 @@ public class VideoJuegos {
         String respuesta;
         boolean enPropiedad = false;
         do {
-            respuesta = pedirCadena("¿Lo tienes (SI/NO)?");
+            respuesta = EntradaDatos.pedirCadena("¿Lo tienes (SI/NO)?");
             if (respuesta.equalsIgnoreCase("si")) {
                 enPropiedad = true;
             } else if (respuesta.equalsIgnoreCase("no")) {
@@ -121,7 +117,7 @@ public class VideoJuegos {
     private static String pedirCadenaNoVacia(String msg) {
         String cadena;
         do {
-            cadena = pedirCadena(msg);
+            cadena = EntradaDatos.pedirCadena(msg);
             if (cadena.equals("")) {
                 System.out.println("No se puede dejar en blanco.");
             }
